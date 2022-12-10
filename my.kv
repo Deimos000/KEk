@@ -1,0 +1,466 @@
+<Standart@Button>
+    background_color: (0,0,0,0)
+    background_normal: ''
+    id: standart
+    canvas.before:
+        Color:
+            rgba: 0, 0,0.1, 1
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [15]
+
+<MyDropDown@DropDown>:
+    size_hint_y: 0.2
+    color: 1,0,0,1
+    canvas.before:
+        Color:
+            rgba: 0.4, 0,0.9, 1
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [2]
+
+<sp@SpinnerOption>:
+    color: 1,1,1,1
+    background_color: 0.6, 0,1, 1
+
+
+
+
+WindowManager:
+    MainWindow:
+    SecondWindow:
+    FirstWindow:
+    ThirdWindow:
+    FourthWindow: 
+    FirstandahalfWindow:
+
+#: import Factory kivy.factory.Factory
+<MainWindow>:
+    name: "main"
+    nova: nova
+
+    FloatLayout:
+        GridLayout:
+            cols:2
+            padding: 20
+            spacing: 20
+
+
+            Standart: 
+                text: "Anruf Assistent"
+                font_size: 30
+                on_press:
+                    root.Feldeins()
+                    app.root.current="second"
+                    root.manager.transition.direction = 'left'
+                    root.kill()
+
+            Standart: 
+                text: "Zitat Manager"
+                font_size: "25"
+                on_press:
+                    root.manager.transition.direction = 'left'
+                    root.Feldzwei()
+                    root.kill()
+                    root.Startsichtbar()
+            Standart: 
+                text: "Shop"
+                on_press: 
+                    root.Felddrei()
+                    app.root.current="Third"
+                    root.manager.transition.direction = 'left'
+                    root.kill()
+            Standart: 
+                text: "Under Construction"
+                on_press: 
+                    root.Feldvier()
+                    app.root.current="Fourth"
+                    root.manager.transition.direction = 'left'
+                    root.kill()
+        Image:
+            source: "Eheheha.jpg"
+            size_hint: 0.6,0.3
+            pos_hint: {"right":0.8, "top":0.6}
+            border: 30,30,30,30
+            id: nova
+
+        
+
+
+
+
+<SecondWindow>:
+    name: "second"
+    wichtig: wichtig
+    warten: warten
+    spaet: spaet 
+    wiesehr: wiesehr
+    antwort: antwort 
+    solltestdu: solltestdu
+    antwortt: antwortt
+    denispunsch:denispunsch
+
+    GridLayout:
+        cols: 1 
+        FloatLayout:
+            size_hint_y: 0.4
+            padding: 30
+            
+            Standart:
+                text: "Sollte ich Denis Anrufen ? "
+                pos_hint: {"right":0.65, "top":0.8}
+                size_hint: 0.3,0.6
+                
+            Standart:
+                pos_hint: {"right":0.99, "top":0.95}
+                size_hint: 0.2,0.6
+                text: "Go Back"
+                on_release:
+                    app.root.current = "main"
+                    root.manager.transition.direction = "right"
+
+
+
+
+        GridLayout: 
+            cols: 2
+            size_hint_y: 1
+
+            Label: 
+                text: "wie sehr möchte ich Denis Anrufen ?      " + str(wiesehr.value)
+                halign: "right"
+
+            Slider: 
+                id: wiesehr
+                min: 1 
+                max: 10
+                step: 1
+                orientation: "horizontal"
+
+            Label: 
+                text: "wie sehr möchte Denis angerufen werden ?      "
+                halign: "right"
+
+            Label: 
+                id: denispunsch 
+                text: "Random"
+
+            Label: 
+                text: "Ist es WICHTIG ? "
+
+            CheckBox:
+                active: False
+                id: wichtig
+
+            Label: 
+                text: "kann es Warten ? "
+
+            CheckBox:
+                active: False
+                id: warten
+
+            Label: 
+                text: "Ist es zu spät ?"
+
+            CheckBox:
+                active: False
+                id: spaet
+
+
+            Label: 
+                text: "denkt Denis dass es zu spät ist ? "
+
+            Label: 
+                id: antwort  
+                text: "Denis sagt: JA"  
+
+        FloatLayout:
+            Standart: 
+                text: "Auswerten"
+                pos_hint: {"right":0.65, "top":1}
+                size_hint: 0.3,0.2
+                on_press: root.Auswerten()
+
+            GridLayout: 
+                cols: 2
+
+                Label: 
+                    id: antwortt
+                    text: "Wahrscheinlichkeit dass Denis Antwortet:"
+                    font_size: 15
+
+                Label: 
+                    id: solltestdu 
+                    text: "solltest du Denis Anrufen: " 
+                    font_size: 15 
+
+
+
+
+<FirstWindow>:
+    name: "First"
+    spruch:spruch
+    start: start
+    counter: counter 
+
+    FloatLayout:
+        Standart:
+            pos_hint: {"right":0.99, "top":0.99}
+            size_hint: 0.2,0.1
+            text: "Go Back"
+            on_release:
+                app.root.current = "main"
+                root.manager.transition.direction = "right"
+
+        FloatLayout:
+            size: root.width,root.height
+
+            Label:
+            Label:
+
+            Label:
+                text: "0/20"
+                pos_hint: {"x":0.4, "top":0.85}
+                size_hint: 0.2 ,0.1
+                id: counter 
+                font_size: 30
+
+            Standart: 
+                pos_hint: {"x":0.01, "top":0.99}
+                size_hint: 0.2 ,0.1
+                text: "Emil"
+                id: emil
+                on_press: 
+                    root.Emil()
+                    root.CheckifRichtig()
+                    root.Checken()
+
+            Standart: 
+                pos_hint: {"x":0.4, "top":0.99}
+                size_hint: 0.2 ,0.1
+                text: "Emily"
+                id: emily 
+                on_press:
+                    root.Emily() 
+                    root.CheckifRichtig()
+                    root.Checken()
+            Standart: 
+                pos_hint: {"right": 0.99, "top":0.55}
+                size_hint: 0.2 ,0.1
+                text: "Nova"
+                id: nova
+                on_press: 
+                    root.Nova()
+                    root.CheckifRichtig()
+                    root.Checken()
+            Standart: 
+                pos_hint: {"right":0.99, "top":0.11}
+                size_hint: 0.2 ,0.1
+                text: "Jesus"
+                id: jesus
+                on_press:
+                    root.Jesus() 
+                    root.CheckifRichtig()
+                    root.Checken()
+                    
+
+            Label: 
+                pos_hint: {"x":0.2, "top":0.6}
+                size_hint: 0.6 ,0.1
+                text: "Jesus hält 6 Minuten"
+                id: spruch 
+                font_size: 20
+                text_size: self.size
+                halign: "center"
+
+            Standart:
+                pos_hint: {"x":0.4, "top":0.11}
+                size_hint: 0.2 ,0.1
+                text: "Denis"
+                id: denis
+                on_press: 
+                    root.Denis()
+                    root.CheckifRichtig()
+                    root.Checken()
+                    
+            Standart: 
+                pos_hint: {"x":0.01, "top":0.11}
+                size_hint: 0.2 ,0.1
+                text: "Marlene"
+                id: marlene
+                on_press: 
+                    root.Marlene()
+                    root.CheckifRichtig()
+                    root.Checken()
+
+            Standart:
+                pos_hint: {"x":0.01, "top":0.55}
+                size_hint: 0.2 ,0.1 
+                text: "Paul"
+                id: paul 
+                on_press: 
+                    root.Paul()
+                    root.CheckifRichtig()
+                    root.Checken()
+
+            Standart:
+                pos_hint: {"x":0.3, "top":0.55}
+                size_hint: 0.4 ,0.1 
+                text: "Start"
+                font_size: 30
+                id: start 
+                opacity: 0 
+                disabled: True 
+                on_press: 
+                    root.startt()
+                    root.Checken()
+
+
+                
+<P>:
+    Label: 
+        text: "SEHR KRASS "
+        size_hint: 0.6,0.6
+        pos_hint: {"x":0.2,"y":0.5}
+        font_size: 50
+
+    Label: 
+        text: "Ich arbeite noch an dem was kommt hatte aber einfach nicht genug Zeit ich pushe noch ein paar updates bis weinachten raus "
+        size_hint: 0.6,0.6
+        pos_hint: {"x":0.2,"y":0.3}
+        font_size: 12
+
+    Standart: 
+        text: "Schließen"
+        on_press: 
+            root.close()
+        size_hint: 0.2,0.2
+        pos_hint: {"x":0.4,"y":0.2}
+        
+
+        
+
+
+<FirstandahalfWindow>:
+    name: "FirstandahalfWindow"
+    dername:dername
+    willhinzufuegen:willhinzufuegen
+    ausgabe: ausgabe
+
+    FloatLayout: 
+
+        Standart:
+            text: "Go Back"
+            on_release:
+                app.root.current = "main"
+                root.manager.transition.direction = "right"
+            pos_hint: {"right":0.99, "top":0.99}
+            size_hint: 0.2,0.1
+
+        TextInput: 
+            pos_hint: {"right":0.73, "top":0.7}
+            size_hint: 0.5,0.1
+            font_size: 30
+            text: "Zitat"
+            id: willhinzufuegen
+            background_color: 0.1,0.15,0.23,1 
+        
+        Standart: 
+            pos_hint: {"right":0.95, "top":0.7}
+            size_hint: 0.2,0.1
+            text: "Hinzufügen"
+            on_press:
+                root.Hinzufuegen()
+                root.Sortieren()
+
+        Label: 
+            pos_hint: {"right":0.6, "y":0.23}
+            size_hint: 0.2,0.1
+            text: "Bitte einen Namen wählen"
+            id: ausgabe
+            font_size: 20
+            halign: "left"
+            valign: "top"
+
+        Standart: 
+            text: "Spruchmanager"
+            font_size: 30 
+            pos_hint: {"right":0.7, "top":0.9}
+            size_hint: 0.4,0.1
+            on_press: 
+                root.Gaming()
+                root.Startsichtbar()
+
+
+        Spinner:   
+            max_height: 0.4   
+            dropdown_cls: 'MyDropDown'       
+            pos_hint: {"right":0.23, "top":0.7}
+            size_hint: 0.2,0.1
+            id: dername
+            background_color: 0.7, 0,0.8, 1  
+            foreground_color: 1,1,1,1
+            font_size:17
+            text: "Choose"
+            height: 0.5
+            values: ["Emily","Emil","Nova","Marlene","Jesus","Max","Linus","Denis"]
+            on_text: root.Sortieren()
+            option_cls: "sp"
+
+
+
+
+    
+
+<ThirdWindow>:
+    name: "Third"
+    gems: gems 
+
+    FloatLayout: 
+
+        Standart:
+            text: "Go Back"
+            on_release:
+                app.root.current = "main"
+                root.manager.transition.direction = "right"
+            pos_hint: {"right":0.99, "top":0.99}
+            size_hint: 0.2,0.1
+
+        GridLayout:
+            cols: 2 
+
+            Label: 
+                text: "Youtube Gems     Price: 35"
+
+            Standart:
+                text: "Buy"
+                on_press:
+                    root.Gems() 
+                    root.buy()
+                id: gems 
+                    
+
+            Label:
+                text: "Funfact          Price 35"
+
+            Standart:
+                text: "Buy"
+                on_press:
+                    root.product()
+                    root.buy()
+
+
+
+        
+
+
+<FourthWindow>:
+    name: "Fourth"
+
+    Button:
+        text: "Go Back"
+        on_release:
+            app.root.current = "main"
+            root.manager.transition.direction = "right"
